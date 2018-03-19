@@ -1,0 +1,17 @@
+{
+  "name": "node-red-contrib-cmteknik",
+  "version": "0.0.1",
+  "description": "Collection of Node RED extensions from CM Teknik",
+  "author": "Jonatan Magnusson <jonatan@cmteknik.se>",
+  "license": "ISC",
+  "dependencies": {
+    "netcom-client": "^1.0.0",
+  },
+  "node-red": {
+    "nodes": {
+      "netcom-read": "src/netcom-read.js",
+      "netcom-client": "src/netcom-client.js",
+      "netcom-write": "src/netcom-write.js"
+    }
+  }
+}

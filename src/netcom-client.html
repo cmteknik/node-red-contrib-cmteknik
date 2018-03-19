@@ -1,0 +1,36 @@
+<script type="text/javascript">
+    RED.nodes.registerType('netcom-client', {
+        category: 'config',
+        defaults: {
+            name: { value: '' },
+            host: { value: '127.0.0.1', required: true },
+            port: { value: 7878, required: true },
+        },
+        label: function () {
+            let node = this;
+            return node.name || 'Netcom @ ' + node.host + ':' + node.port;
+        },
+    });
+</script>
+
+<script type="text/x-red" data-template-name="netcom-client">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="icon-tag"></i>
+        <input type="text" id="node-config-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-config-input-host"><i class="icon-tag"></i>
+        <input type="text" id="node-config-input-host" placeholder="127.0.0.1">
+    </div>
+
+    <div class="form-row">
+        <label for="node-config-input-port"><i class="icon-tag"></i>
+        <input type="number" id="node-config-input-port" placeholder="7878">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="netcom-client">
+    <p>Netcom Client</p>
+</script>
+
