@@ -1,11 +1,11 @@
 {
   "name": "node-red-contrib-cmteknik",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Collection of Node RED extensions from CM Teknik",
   "author": "Jonatan Magnusson <jonatan@cmteknik.se>",
   "license": "ISC",
   "dependencies": {
-    "netcom-client": "^1.0.0"
+    "netcom-client": "^1.0.1"
   },
   "node-red": {
     "nodes": {
