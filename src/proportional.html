@@ -1,0 +1,47 @@
+<script type="text/javascript">
+    RED.nodes.registerType("proportional", {
+        category: "CM Teknik",
+        color: "#fda32d",
+        defaults: {
+            name: { value: "" },
+            x1: { value: 0 },
+            y1: { value: 0 },
+            x2: { value: 100 },
+            y2: { value: 10 }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "netcom.png",
+        label: function() {
+            return this.name || "Proportional";
+        }
+    });
+</script>:
+
+<script type="text/x-red" data-template-name="proportional">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-x1"><i class="icon-tag"></i> X1</label>
+        <input type="number" id="node-input-x1" placeholder="0">
+    </div>
+    <div class="form-row">
+        <label for="node-input-y1"><i class="icon-tag"></i> Y1</label>
+        <input type="number" id="node-input-y1" placeholder="0">
+    </div>
+    <div class="form-row">
+        <label for="node-input-x2"><i class="icon-tag"></i> X2</label>
+        <input type="number" id="node-input-x2" placeholder="100">
+    </div>
+    <div class="form-row">
+        <label for="node-input-y2"><i class="icon-tag"></i> Y2</label>
+        <input type="number" id="node-input-y2" placeholder="10">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="proportional">
+    <p>Output a numeric value proportional to the input value</p>
+</script>
+
