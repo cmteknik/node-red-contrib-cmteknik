@@ -1,6 +1,6 @@
 
-const Netcom = require('netcom');
-const { Pool } = Netcom;
+const NetcomClient = require('netcom-client');
+const { Pool } = NetcomClient;
 
 module.exports = function (RED) {
     function NetcomClientNode (config) {
