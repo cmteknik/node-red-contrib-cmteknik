@@ -15,8 +15,7 @@ module.exports = function(RED) {
         node.on('input', function (msg) {
             let nc;
             const value = msg.payload;
-            node.log("VALUE");
-            node.log(value);
+
             pool.acquire()
                 .then((client) => {
                     nc = client;
@@ -24,8 +23,20 @@ module.exports = function(RED) {
                 })
                 .then((result) => {
                     pool.release(nc);
-                    node.status({ shape: "dot", fill: "green", text: value });
+                    const writtenValue = result[node.parameter];
+                    if (writtenValue === null || writtenValue === undefined) {
+                        node.status({ fill: "red", shape: "dot", text: "failed" });
+                    } else {
+                        node.status({ shape: "dot", fill: "green", text: writtenValue });
+                    }
                     node.send({ payload: result });
+                })
+                .catch((error) => {
+                    if (error.message) {
+                        node.status({ fill: "red", shape: "dot", text: error.message });
+                    } else {
+                        node.status({ fill: "red", shape: "dot", text: error.toString() });
+                    }
                 });
         });
     }

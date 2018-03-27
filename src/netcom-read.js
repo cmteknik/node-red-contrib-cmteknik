@@ -15,8 +15,12 @@ module.exports = function(RED) {
         const node = this;
 
         node.handleNewValue = function(value) {
-            node.status({ fill: "green", shape: "dot", text: value });
-            node.send({ payload: value });
+            if (value === undefined || value === null) {
+                node.status({ fill: "red", shape: "dot", text: "failed" });
+            } else {
+                node.status({ fill: "green", shape: "dot", text: value });
+                node.send({ payload: value });
+            }
         }
 
         node.run = function () {
@@ -29,6 +33,16 @@ module.exports = function(RED) {
                 .then((result) => {
                     pool.release(nc);
                     node.handleNewValue(result[node.parameter]);
+                })
+                .catch((error) => {
+                    // console.log("######### CAUGHT AN ERROR ##################", error);
+                    if (error.message) {
+                        // An error response from Netcomd
+                        node.status({ fill: "red", shape: "dot", text: error.message });
+                    } else {
+                        // A Node error type
+                        node.status({ fill: "red", shape: "dot", text: error.toString()});
+                    }
                 });
         }
 
