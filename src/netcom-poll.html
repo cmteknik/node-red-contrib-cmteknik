@@ -14,7 +14,15 @@
         outputs: 1,
         icon: "arrow-in.png",
         label: function() {
-            return this.name || "Netcom Poll";
+            if (this.name) {
+                return this.name;
+            }
+
+            if (this.device && this.parameter) {
+                return this.parameter + " @ " + this.device;
+            }
+
+            return "netcom poll";
         }
     });
 </script>:
@@ -68,5 +76,29 @@
         a read can be triggered by another node, for example
         when chaining multiple reads.
     </p>
+
+    <h3>Settings</h3>
+
+    <dl>
+        <dt>Name</dt>
+        <dd>A readable name of the node. Not required.</dd>
+
+        <dt>Device</dt>
+        <dd>Name of the device to read from</dd>
+
+        <dt>Parameter</dt>
+        <dd>
+            Parameter to read. A data type can be specified as well.
+            If no data type is specified the default data type is used.
+            The default data type depends on device type and network type.
+        </dd>
+
+        <dt>Rate</dt>
+        <dd>The reading interval in seconds.</dd>
+
+        <dt>Connection</dt>
+        <dd>The (possibly shared) connection to Netcomd server</dd>
+    </dl>
+
 </script>
 

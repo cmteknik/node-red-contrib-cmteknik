@@ -12,9 +12,17 @@
         inputs: 1,
         outputs: 0,
         align: "right",
-        icon: "bridge.png",
+        icon: "arrow-in.png",
         label: function() {
-            return this.name || "Netcom Write";
+            if (this.name) {
+                return this.name;
+            }
+
+            if (this.device && this.parameter) {
+                return this.parameter + " @ " + this.device;
+            }
+
+            return "netcom write";
         }
     });
 </script>:
@@ -52,6 +60,29 @@
 </script>
 
 <script type="text/x-red" data-help-name="netcom-write">
-    <p>Write to a device parameter</p>
+    <p>
+        Change the value of a single parameter on a
+        remote device.
+    </p>
+
+    <h3>Settings</h3>
+
+    <dl>
+        <dt>Name</dt>
+        <dd>A readable name of the node. Not required.</dd>
+
+        <dt>Device</dt>
+        <dd>Name of the device</dd>
+
+        <dt>Parameter</dt>
+        <dd>
+            Parameter to update. A data type can be specified as well.
+            If no data type is specified the default data type is used.
+            The default data type depends on device type and network type.
+        </dd>
+
+        <dt>Connection</dt>
+        <dd>The (possibly shared) connection to Netcomd server</dd>
+    </dl>
 </script>
 
