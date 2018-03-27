@@ -8,12 +8,13 @@
     "node-red"
   ],
   "dependencies": {
-    "netcom-client": "^1.0.1"
+    "netcom-client": "^1.0.3"
   },
   "node-red": {
     "nodes": {
-      "netcom-read": "src/netcom-read.js",
       "netcom-client": "src/netcom-client.js",
+      "netcom-poll": "src/netcom-poll.js",
+      "netcom-read": "src/netcom-read.js",
       "netcom-write": "src/netcom-write.js",
       "proportional": "src/proportional.js"
     }
