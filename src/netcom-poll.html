@@ -4,8 +4,8 @@
         color: "#fda32d",
         defaults: {
             name: { value: "" },
-            device: { value: "" },
-            parameter: { value: "3x0000" },
+            device: { value: "", required: true },
+            parameter: { value: "3x0000", required: true },
             dataType: { value: "" },
             rate: { value: 10 },
             connection: { value: "", type: "netcom-client" },
