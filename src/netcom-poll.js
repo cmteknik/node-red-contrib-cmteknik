@@ -31,10 +31,18 @@ module.exports = function(RED) {
 
         node.run = function () {
             let nc;
+            let readList;
+
+            if (node.dataType) {
+                readList = { [node.parameter]: { t: node.dataType } }
+            } else {
+                readList = [ node.parameter ];
+            }
+
             pool.acquire()
                 .then((client) => {
                     nc = client;
-                    return nc.read(node.device, [ node.parameter ]);
+                    return nc.read(node.device, readList);
                 })
                 .then((result) => {
                     pool.release(nc);

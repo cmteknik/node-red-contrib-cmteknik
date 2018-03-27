@@ -13,13 +13,20 @@ module.exports = function(RED) {
         const node = this;
 
         node.on('input', function (msg) {
-            let nc;
             const value = msg.payload;
+            let nc;
+            let writeList;
+
+            if (node.dataType) {
+                writeList = { [node.parameter]: { v: value, t: node.dataType }};
+            } else {
+                writeList = { [node.parameter]: value };
+            }
 
             pool.acquire()
                 .then((client) => {
                     nc = client;
-                    return nc.write(node.device, { [node.parameter]: value });
+                    return nc.write(node.device, writeList);
                 })
                 .then((result) => {
                     pool.release(nc);
