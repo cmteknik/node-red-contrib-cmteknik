@@ -1,24 +1,25 @@
 <script type="text/javascript">
-    RED.nodes.registerType("netcom-read", {
+    RED.nodes.registerType("netcom-poll", {
         category: "CM Teknik",
         color: "#fda32d",
         defaults: {
             name: { value: "" },
             device: { value: "" },
             parameter: { value: "3x0000" },
+            dataType: { value: "" },
             rate: { value: 10 },
             connection: { value: "", type: "netcom-client" },
         },
         inputs: 0,
         outputs: 1,
-        icon: "netcom.png",
+        icon: "arrow-in.png",
         label: function() {
-            return this.name || "Netcom Read";
+            return this.name || "Netcom Poll";
         }
     });
 </script>:
 
-<script type="text/x-red" data-template-name="netcom-read">
+<script type="text/x-red" data-template-name="netcom-poll">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -27,21 +28,45 @@
         <label for="node-input-device"><i class="icon-tag"></i> Device</label>
         <input type="text" id="node-input-device" placeholder="Device">
     </div>
+
     <div class="form-row">
         <label for="node-input-parameter"><i class="icon-tag"></i> Parameter</label>
-        <input type="text" id="node-input-parameter" placeholder="Parameter">
+        <input type="text" id="node-input-parameter" placeholder="Parameter" style="max-width: 120px">
+        <select for="node-input-dataType" style="max-width: 80px">
+            <option value=""></option>
+            <option value="f">f</option>
+            <option value="u8">u8</option>
+            <option value="u16">u16</option>
+            <option value="u32">u32</option>
+            <option value="i8">i8</option>
+            <option value="i16">i16</option>
+            <option value="i32">i32</option>
+            <option value="h">h</option>
+        </select>
     </div>
+
     <div class="form-row">
-        <label for="node-input-rate"><i class="icon-tag"></i> Rate</label>
+        <label for="node-input-rate"><i class="icon-repeat"></i> Rate</label>
         <input type="text" id="node-input-rate" type="number" placeholder="seconds"/>
     </div>
+
     <div class="form-row">
-        <label for="node-input-connection"><i class="icon-tag"></i> Connection</label>
+        <label for="node-input-connection"><i class="icon-globe"></i> Connection</label>
         <input id="node-input-connection" type="text">
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="netcom-read">
-    <p>Read a device parameter</p>
+<script type="text/x-red" data-help-name="netcom-poll">
+    <p>
+        Read a single parameter from a remote device
+        using a Netcom communication server.
+    </p>
+
+    <p>
+        This variant reads the parameter value at a fixed rate.
+        There is also another variant, "netcom-read", where
+        a read can be triggered by another node, for example
+        when chaining multiple reads.
+    </p>
 </script>
 

@@ -1,10 +1,11 @@
 
 module.exports = function(RED) {
-    function NetcomRead(config) {
+    function NetcomPoll(config) {
         RED.nodes.createNode(this, config);
         this.name = config.name;
         this.device = config.device;
         this.parameter = config.parameter;
+        this.dataType = config.dataType;
         this.rate = config.rate;
 
         let timerId = null;
@@ -47,6 +48,6 @@ module.exports = function(RED) {
         node.startIntervalReading();
     }
 
-    RED.nodes.registerType("netcom-read", NetcomRead);
+    RED.nodes.registerType("netcom-poll", NetcomPoll);
 }
 
