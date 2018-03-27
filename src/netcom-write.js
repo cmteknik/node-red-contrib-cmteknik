@@ -5,6 +5,7 @@ module.exports = function(RED) {
         this.name = config.name;
         this.device = config.device;
         this.parameter = config.parameter;
+        this.dataType = config.dataType;
 
         let connection = RED.nodes.getNode(config.connection)
         let pool = connection.pool;

@@ -6,11 +6,13 @@
             name: { value: "" },
             device: { value: "" },
             parameter: { value: "3x0000" },
+            dataType: { value: "" },
             connection: { value: "", type: "netcom-client" },
         },
         inputs: 1,
         outputs: 0,
-        icon: "netcom.png",
+        align: "right",
+        icon: "bridge.png",
         label: function() {
             return this.name || "Netcom Write";
         }
@@ -26,12 +28,25 @@
         <label for="node-input-device"><i class="icon-tag"></i> Device</label>
         <input type="text" id="node-input-device" placeholder="Device">
     </div>
+
     <div class="form-row">
-        <label for="node-input-parameter"><i class="icon-tag"></i> Parameter</label>
-        <input type="text" id="node-input-parameter" placeholder="Parameter">
-    </div>
+            <label for="node-input-parameter"><i class="icon-tag"></i> Parameter</label>
+            <input type="text" id="node-input-parameter" placeholder="Parameter" style="max-width: 120px">
+            <select for="node-input-dataType" style="max-width: 80px">
+                <option value=""></option>
+                <option value="f">f</option>
+                <option value="u8">u8</option>
+                <option value="u16">u16</option>
+                <option value="u32">u32</option>
+                <option value="i8">i8</option>
+                <option value="i16">i16</option>
+                <option value="i32">i32</option>
+                <option value="h">h</option>
+            </select>
+        </div>
+
     <div class="form-row">
-        <label for="node-input-connection"><i class="icon-tag"></i> Connection</label>
+        <label for="node-input-connection"><i class="icon-globe"></i> Connection</label>
         <input id="node-input-connection" type="text">
     </div>
 </script>
