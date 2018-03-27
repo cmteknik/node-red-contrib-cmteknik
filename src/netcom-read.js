@@ -2,22 +2,17 @@
 module.exports = function(RED) {
     function NetcomRead(config) {
         RED.nodes.createNode(this, config);
+
         this.name = config.name;
         this.device = config.device;
         this.parameter = config.parameter;
-        this.rate = config.rate;
+        this.dataType = config.dataType;
 
         let timerId = null;
         let connection = RED.nodes.getNode(config.connection)
         let pool = connection.pool;
 
         const node = this;
-
-        node.startIntervalReading = function () {
-            if (!timerId) {
-                timerId = setInterval(node.run, node.rate * 1000);
-            }
-        }
 
         node.handleNewValue = function(value) {
             node.status({ fill: "green", shape: "dot", text: value });
@@ -37,14 +32,9 @@ module.exports = function(RED) {
                 });
         }
 
-        node.on('close', () => {
-            if (timerId) {
-                clearInterval(timerId);
-            }
-            timerId = null;
+        node.on('input', function (msg) {
+            node.run();
         });
-
-        node.startIntervalReading();
     }
 
     RED.nodes.registerType("netcom-read", NetcomRead);
