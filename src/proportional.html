@@ -11,7 +11,7 @@
         },
         inputs: 1,
         outputs: 1,
-        icon: "netcom.png",
+        icon: "prop.png",
         label: function() {
             return this.name || "Proportional";
         }
@@ -20,28 +20,54 @@
 
 <script type="text/x-red" data-template-name="proportional">
     <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
+        <label for="node-input-name" style="width:150px"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name" style="width:250px">
     </div>
     <div class="form-row">
-        <label for="node-input-x1"><i class="icon-tag"></i> X1</label>
-        <input type="number" id="node-input-x1" placeholder="0">
+        <label for="node-input-x1" style="width:150px"><i class="icon-tag"></i> Input range</label>
+        <input type="text" id="node-input-x1" placeholder="0" style="width:100px"> to
+        <input type="text" id="node-input-x2" placeholder="100" style="width:100px">
     </div>
     <div class="form-row">
-        <label for="node-input-y1"><i class="icon-tag"></i> Y1</label>
-        <input type="number" id="node-input-y1" placeholder="0">
-    </div>
-    <div class="form-row">
-        <label for="node-input-x2"><i class="icon-tag"></i> X2</label>
-        <input type="number" id="node-input-x2" placeholder="100">
-    </div>
-    <div class="form-row">
-        <label for="node-input-y2"><i class="icon-tag"></i> Y2</label>
-        <input type="number" id="node-input-y2" placeholder="10">
+        <label for="node-input-y1" style="width:150px"><i class="icon-tag"></i> Output range</label>
+        <input type="text" id="node-input-y1" placeholder="0" style="width:100px"> to
+        <input type="text" id="node-input-y2" placeholder="10" style="width:100px">
     </div>
 </script>
 
 <script type="text/x-red" data-help-name="proportional">
-    <p>Output a numeric value proportional to the input value</p>
+    <p>
+        Performs a proportional scaling of the input value,
+        making sure the scaled value does not go above/below
+        its max/min limits.
+    </p>
+
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload
+            <span class="property-type">number</span>
+        </dt>
+        <dd>the input value to be scaled</dd>
+    </dl>
+
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">number</span></dt>
+        <dd>the scaled value</dd>
+    </dl>
+
+    <h3>Details</h3>
+    <p>
+        The output of this node is a value that relates to the
+        output range as the input value relates to the input
+        range. 
+    </p>
+
+    <p>
+        The functionality of is very similar to the
+        Node-RED "range" node, except this one has fewer
+        settings that need to be configured and it displays
+        the input and output value as status of the node.
+    </p>
 </script>
 
