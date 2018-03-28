@@ -11,7 +11,7 @@
         outputs: 1,
         icon: "function.png",
         label: function() {
-            return this.name || "unit conversion";
+            return this.name || `${this.fromUnit} to ${this.toUnit}`;
         }
     });
 </script>:
@@ -47,7 +47,7 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="proportional">
+<script type="text/x-red" data-help-name="unit-conversion">
     <p>
         Unit conversion
     </p>
