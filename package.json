@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-cmteknik",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Collection of Node RED extensions from CM Teknik",
   "author": "Jonatan Magnusson <jonatan@cmteknik.se>",
   "license": "MIT",
@@ -16,7 +16,8 @@
       "netcom-poll": "src/netcom-poll.js",
       "netcom-read": "src/netcom-read.js",
       "netcom-write": "src/netcom-write.js",
-      "proportional": "src/proportional.js"
+      "proportional": "src/proportional.js",
+      "unit-conversion": "src/unit-conversion.js"
     }
   }
 }
